@@ -8,42 +8,28 @@ import javax.servlet.http.HttpServletResponse;
 
 
 public class Controller extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+    private static final long serialVersionUID = 1L;
+
+    public final CommandProvider commandProvider = new CommandProvider();
+
     public Controller() {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		process(request, response);
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        process(request, response);
+    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		process(request, response);
-	}
-	
-	private void process(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("Hello, world!");
-		String name;
-		String surname;
-		String login;
-		String password;
-		String address;
-		String contact;
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        process(request, response);
+    }
 
+    private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		name = request.getParameter("name");
-		surname = request.getParameter("surname");
-		login = request.getParameter("login");
-		password = request.getParameter("password");
-		address = request.getParameter("address");
-		contact = request.getParameter("contact");
+        String commandName = request.getParameter("command");
+        Command command = commandProvider.getCommand(commandName);
+        command.execute(request, response);
 
-
-
-		System.out.println(name + " " + surname);
-		System.out.println(login + " " + password);
-		System.out.println(address + " " + contact);
-	}
+    }
 
 }

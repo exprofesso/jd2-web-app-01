@@ -10,6 +10,7 @@
 <h1>hello, world</h1>
 
 <form action="MyController" method="get">
+	<input type="hidden" name="command" value="Registration">
 	<table style="with: 50%">
 		<tr>
 			<td>First Name</td>
@@ -35,6 +36,22 @@
 			<td>Contact No</td>
 			<td><input type="text" name="contact" /></td>
 		</tr></table>
+	<input type="submit" value="Submit" /></form>
+
+
+
+<form action="MyController" method="get">
+	<input type="hidden" name="command" value="login">
+	<table style="with: 50%">
+		<tr>
+		<td>Login</td>
+			<td><input type="text" name="login" /></td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td><input type="password" name="password" /></td>
+		</tr>
+		<tr></table>
 	<input type="submit" value="Submit" /></form>
 </body>
 </body>
