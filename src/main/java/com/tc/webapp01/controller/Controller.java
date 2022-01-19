@@ -15,15 +15,35 @@ public class Controller extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		process();
+		process(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		process();
+		process(request, response);
 	}
 	
-	private void process() {
+	private void process(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("Hello, world!");
+		String name;
+		String surname;
+		String login;
+		String password;
+		String address;
+		String contact;
+
+
+		name = request.getParameter("name");
+		surname = request.getParameter("surname");
+		login = request.getParameter("login");
+		password = request.getParameter("password");
+		address = request.getParameter("address");
+		contact = request.getParameter("contact");
+
+
+
+		System.out.println(name + " " + surname);
+		System.out.println(login + " " + password);
+		System.out.println(address + " " + contact);
 	}
 
 }
