@@ -1,5 +1,7 @@
 package com.tc.webapp01.controller;
 
+import com.tc.webapp01.controller.imp.GoToLoginationCommand;
+import com.tc.webapp01.controller.imp.GoToRegistrationCommand;
 import com.tc.webapp01.controller.imp.LoginationCommand;
 import com.tc.webapp01.controller.imp.RegistrationCommand;
 
@@ -12,6 +14,9 @@ public final class CommandProvider {
     public CommandProvider(){
         commandMap.put("Registration", new RegistrationCommand());
         commandMap.put("login", new LoginationCommand());
+        commandMap.put("GoToRegistration", new GoToRegistrationCommand());
+        commandMap.put("GoToLogination", new GoToLoginationCommand());
+
     }
 
     public final Command getCommand (String commandName){
