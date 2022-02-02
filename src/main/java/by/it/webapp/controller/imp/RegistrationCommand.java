@@ -1,8 +1,7 @@
-package com.tc.webapp01.controller.imp;
+package by.it.webapp.controller.imp;
 
-import com.tc.webapp01.controller.Command;
+import by.it.webapp.controller.Command;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

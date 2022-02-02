@@ -1,4 +1,4 @@
-package com.tc.webapp01.controller;
+package by.it.webapp.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

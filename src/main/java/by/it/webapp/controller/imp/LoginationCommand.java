@@ -1,6 +1,6 @@
-package com.tc.webapp01.controller.imp;
+package by.it.webapp.controller.imp;
 
-import com.tc.webapp01.controller.Command;
+import by.it.webapp.controller.Command;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +16,6 @@ public class LoginationCommand implements Command {
         password = request.getParameter("password");
         System.out.println(login + " !!! " + password);
 
-        response.getWriter().println("ВАШ логин " + login + " " + "Пароль такой то " + password);
+        response.getWriter().println("You login " + login + " " + "Password " + password);
     }
 }

@@ -1,9 +1,6 @@
-package com.tc.webapp01.controller;
+package by.it.webapp.controller;
 
-import com.tc.webapp01.controller.imp.GoToLoginationCommand;
-import com.tc.webapp01.controller.imp.GoToRegistrationCommand;
-import com.tc.webapp01.controller.imp.LoginationCommand;
-import com.tc.webapp01.controller.imp.RegistrationCommand;
+import by.it.webapp.controller.imp.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +13,7 @@ public final class CommandProvider {
         commandMap.put("login", new LoginationCommand());
         commandMap.put("GoToRegistration", new GoToRegistrationCommand());
         commandMap.put("GoToLogination", new GoToLoginationCommand());
+        commandMap.put("GoToUserList", new GoToUserListCommand());
 
     }
 
