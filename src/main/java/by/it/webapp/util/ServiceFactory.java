@@ -2,6 +2,7 @@ package by.it.webapp.util;
 
 import by.it.webapp.dao.UserDao;
 import by.it.webapp.dao.impl.UserDaoImpl;
+import by.it.webapp.domain.User;
 import by.it.webapp.pool.ConnectionPool;
 import by.it.webapp.pool.ConnectionPoolException;
 import by.it.webapp.service.Transaction;
@@ -15,10 +16,8 @@ public final class ServiceFactory implements AutoCloseable {
     private Connection connection;
 
     private static final ServiceFactory instance = new ServiceFactory();
-
-
-
     private final UserServiceImpl userService = new UserServiceImpl();
+    private final User user = new User();
 
     public ServiceFactory() {
     }
@@ -63,6 +62,10 @@ public final class ServiceFactory implements AutoCloseable {
             } catch (Exception e) {
             }
         }
+    }
+
+    public User getUser() {
+        return user;
     }
 
     //    UserDao getUserDao() throws FactoryException;

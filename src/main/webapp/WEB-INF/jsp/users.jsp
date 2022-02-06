@@ -17,7 +17,9 @@
                 <th>Имя</th>
                 <th>Фамилия</th>
                 <th>Почта</th>
-<%--                <th>Роль</th>--%>
+                <th>Уровень скидки</th>
+                <th>Редактирование</th>
+            <%--                <th>Роль</th>--%>
                 <td>&nbsp;</td>
             </tr>
             <c:forEach var="user" items="${users}">
@@ -27,11 +29,12 @@
                 <td class="content">${user.name}</td>
                 <td class="content">${user.surname}</td>
                 <td class="content">${user.email}</td>
-<%--                <td class="content">${user.role.name}</td>--%>
-                <td class="empty"><a href="edit.html?id=${user.id}" class="edit"></a></td>
+                <td class="content">${user.discount}</td>
+                <td class="empty"> <a href="userEdit.jsp?id=${user.id}" class="add-button">Редактировать</a></td>
+<%--                <td class="empty"><a href="userEdit.jsp?id=${user.id}" class="edit"></a></td>--%>
             </tr>
             </c:forEach>
         </table>
-        <a href="edit.html" class="add-button">Добавить</a>
+        <a href="userEdit.jsp" class="add-button">Добавить</a>
     </body>
 </html>

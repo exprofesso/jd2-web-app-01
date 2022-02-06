@@ -20,8 +20,6 @@ public class Discount extends Entity {
 
     @Override
     public String toString() {
-        return "Discount{" +
-                "percent=" + percent +
-                '}';
+        return ""+percent;
     }
 }

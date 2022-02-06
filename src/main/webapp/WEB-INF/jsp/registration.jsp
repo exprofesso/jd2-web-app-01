@@ -31,12 +31,15 @@
         <td><input type="password" name="password" /></td>
     </tr>
     <tr>
-        <td>Address</td>
-        <td><input type="text" name="address" /></td>
+        <td>email</td>
+        <td><input type="text" name="email" /></td>
     </tr>
     <tr>
-        <td>Contact No</td>
-        <td><input type="text" name="contact" /></td>
+        <td>Discount</td>
+        <td><input type="text" name="discount" /></td>
+    <tr>
+        <td>Role</td>
+        <td><input type="text" name="role" /></td>
     </tr></table>
 <input type="submit" value="Submit" /></form>
 </body>

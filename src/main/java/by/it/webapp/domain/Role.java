@@ -18,4 +18,11 @@ public class Role extends Entity {
     public void setRoleType(String roleType) {
         this.roleType = roleType;
     }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "roleType='" + roleType + '\'' +
+                '}';
+    }
 }
