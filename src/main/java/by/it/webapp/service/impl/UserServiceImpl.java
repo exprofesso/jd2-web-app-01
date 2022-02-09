@@ -51,6 +51,28 @@ public class UserServiceImpl extends BaseService implements UserService {
     }
 
     @Override
+    public User findByLogin(String login) throws ServiceException {
+        try {
+            log.info("transition to findById User");
+            return userDao.readByLogin(login);
+        } catch (DaoException e) {
+            log.error("Didn't find one" + e.getMessage());
+            throw new ServiceException(e);
+        }
+
+    }
+
+    @Override
+    public User findByLoginAndPassword(String login, String password) throws ServiceException {
+        try {
+            log.info("transition to findById User");
+            return userDao.readByLoginAndPassword(login, password);
+        } catch (DaoException e) {
+            log.error("Didn't find one" + e.getMessage());
+            throw new ServiceException(e);
+        }    }
+
+    @Override
     public void save(User user) throws ServiceException {
         log.info("Beginning to save the user");
         try {

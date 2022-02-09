@@ -11,6 +11,11 @@ public interface UserService {
 
     User findById(Long id) throws ServiceException;
 
+    User findByLogin(String login) throws ServiceException;
+
+    User findByLoginAndPassword(String login, String password) throws ServiceException;
+
+
     void save(User user) throws ServiceException;
 
     void changePassword(Long userId, String oldPassword, String newPassword) throws ServiceException;
