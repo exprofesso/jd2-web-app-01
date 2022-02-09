@@ -13,6 +13,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl extends BaseDaoImpl implements UserDao {
+    private static final String USERID = "id";
+    private static final String LOGIN = "login";
+    private static final String PASSWORD = "password";
+    private static final String NAME = "name";
+    private static final String SURNAME = "surname";
+    private static final String EMAIL = "email";
+    private static final String DISCOUNTSID = "Discounts_id";
+    private static final String ROLESID = "Roles_id";
+
+
     @Override
     public List<User> readAll() throws DaoException {
 
@@ -25,15 +35,15 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
                 User user = new User();
                 Role role = new Role();
                 Discount discount = new Discount();
-                user.setId(resultSet.getLong("id"));
-                user.setLogin(resultSet.getString("login"));
-                user.setPassword(resultSet.getString("password"));
-                user.setName(resultSet.getString("name"));
-                user.setSurname(resultSet.getString("surname"));
-                user.setEmail(resultSet.getString("email"));
-                discount.setPercent(resultSet.getInt("Discounts_id"));
+                user.setId(resultSet.getLong(USERID));
+                user.setLogin(resultSet.getString(LOGIN));
+                user.setPassword(resultSet.getString(PASSWORD));
+                user.setName(resultSet.getString(NAME));
+                user.setSurname(resultSet.getString(SURNAME));
+                user.setEmail(resultSet.getString(EMAIL));
+                discount.setPercent(resultSet.getInt(DISCOUNTSID));
                 user.setDiscount(discount);
-                role.setRoleType(resultSet.getString("Roles_id"));
+                role.setRoleType(resultSet.getString(ROLESID));
                 user.setRole(role);
                 usersAll.add(user);
             }
@@ -51,13 +61,69 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 
     @Override
     public User readByLogin(String login) throws DaoException {
-        return null;
+        final String read = "SELECT  * FROM users WHERE login = ?";
+
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(read)) {
+            statement.setString(1, login);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                User user = null;
+                if (resultSet.next()) {
+                    user = new User();
+                    user.setId(resultSet.getLong(USERID));
+                    user.setLogin(resultSet.getString(LOGIN));
+                    user.setPassword(resultSet.getString(PASSWORD));
+                    user.setName(resultSet.getString(NAME));
+                    user.setSurname(resultSet.getString(SURNAME));
+                    user.setEmail(resultSet.getString(EMAIL));
+                    Role role = new Role();
+                    Discount discount = new Discount();
+                    discount.setPercent(Integer.parseInt(resultSet.getString(DISCOUNTSID)));
+                    user.setDiscount(discount);
+                    role.setRoleType(resultSet.getString(ROLESID));
+                    user.setRole(role);
+                }
+                return user;
+            }
+
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e);
+        }
     }
 
     @Override
     public User readByLoginAndPassword(String login, String password) throws DaoException {
-        return null;
+        final String read = "SELECT  * FROM users WHERE login = ? and password = ?";
+
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(read)) {
+            statement.setString(1, login);
+            statement.setString(2, password);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                User user = null;
+                if (resultSet.next()) {
+                    user = new User();
+                    user.setId(resultSet.getLong(USERID));
+                    user.setLogin(resultSet.getString(LOGIN));
+                    user.setPassword(resultSet.getString(PASSWORD));
+                    user.setName(resultSet.getString(NAME));
+                    user.setSurname(resultSet.getString(SURNAME));
+                    user.setEmail(resultSet.getString(EMAIL));
+                    Role role = new Role();
+                    Discount discount = new Discount();
+                    discount.setPercent(Integer.parseInt(resultSet.getString(DISCOUNTSID)));
+                    user.setDiscount(discount);
+                    role.setRoleType(resultSet.getString(ROLESID));
+                    user.setRole(role);
+                }
+                return user;
+            }
+
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e);
+        }
     }
+
 
     @Override
     public User read(Long id) throws DaoException {
@@ -71,16 +137,16 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
                 if (resultSet.next()) {
                     user = new User();
                     user.setId(id);
-                    user.setLogin(resultSet.getString("login"));
-                    user.setPassword(resultSet.getString("password"));
-                    user.setName(resultSet.getString("name"));
-                    user.setSurname(resultSet.getString("surname"));
-                    user.setEmail(resultSet.getString("email"));
+                    user.setLogin(resultSet.getString(LOGIN));
+                    user.setPassword(resultSet.getString(PASSWORD));
+                    user.setName(resultSet.getString(NAME));
+                    user.setSurname(resultSet.getString(SURNAME));
+                    user.setEmail(resultSet.getString(EMAIL));
                     Role role = new Role();
                     Discount discount = new Discount();
-                    discount.setPercent(Integer.parseInt(resultSet.getString("Discounts_id")));
+                    discount.setPercent(Integer.parseInt(resultSet.getString(DISCOUNTSID)));
                     user.setDiscount(discount);
-                    role.setRoleType(resultSet.getString("Roles_id"));
+                    role.setRoleType(resultSet.getString(ROLESID));
                     user.setRole(role);
                 }
                 return user;
@@ -88,7 +154,8 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 
         } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException(e);
-        }    }
+        }
+    }
 
     @Override
     public Long create(User user) throws DaoException {
@@ -96,18 +163,16 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(create, Statement.RETURN_GENERATED_KEYS)) {
-
-
             statement.setString(1, user.getLogin());
             statement.setString(2, user.getPassword());
             statement.setString(3, user.getName());
             statement.setString(4, user.getSurname());
             statement.setString(5, user.getEmail());
             statement.setInt(6, user.getDiscount().getPercent());
-            statement.setInt(7, 1);
+            statement.setInt(7, user.getRole().getRoleId());
             statement.executeUpdate();
             Long id = null;
-            try (ResultSet resultSet = statement.getGeneratedKeys()){
+            try (ResultSet resultSet = statement.getGeneratedKeys()) {
                 if (resultSet.next()) {
                     id = resultSet.getLong(1);
                 }
@@ -115,7 +180,8 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
             }
         } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException();
-        }    }
+        }
+    }
 
     @Override
     public void update(User user) throws DaoException {
@@ -130,8 +196,8 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
             statement.setString(3, user.getName());
             statement.setString(4, user.getSurname());
             statement.setString(5, user.getEmail());
-            statement.setInt(6, 1);
-            statement.setInt(7, 1);
+            statement.setInt(6, user.getDiscount().getPercent());
+            statement.setInt(7, user.getRole().getRoleId());
             statement.setLong(8, user.getId());
             statement.executeUpdate();
 
