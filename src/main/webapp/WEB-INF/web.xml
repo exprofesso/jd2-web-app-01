@@ -50,6 +50,24 @@
     </servlet>
 
     <servlet-mapping>
+        <servlet-name>useredit</servlet-name>
+        <url-pattern>/userEdit</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>useredit</servlet-name>
+        <jsp-file>/WEB-INF/jsp/userEdit.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>usersave</servlet-name>
+        <url-pattern>/userSave</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>usersave</servlet-name>
+        <jsp-file>/WEB-INF/jsp/save.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
@@ -63,14 +81,14 @@
         <url-pattern>*.html</url-pattern>
     </filter-mapping>
 
-<!--    <filter>-->
-<!--        <filter-name>SecurityFilter</filter-name>-->
-<!--        <filter-class>by.it.webapp.filter.SecurityFilter</filter-class>-->
-<!--    </filter>-->
-<!--    <filter-mapping>-->
-<!--        <filter-name>SecurityFilter</filter-name>-->
-<!--        <url-pattern>*.html</url-pattern>-->
-<!--    </filter-mapping>-->
+    <!--    <filter>-->
+    <!--        <filter-name>SecurityFilter</filter-name>-->
+    <!--        <filter-class>by.it.webapp.filter.SecurityFilter</filter-class>-->
+    <!--    </filter>-->
+    <!--    <filter-mapping>-->
+    <!--        <filter-name>SecurityFilter</filter-name>-->
+    <!--        <url-pattern>*.html</url-pattern>-->
+    <!--    </filter-mapping>-->
 
 
     <listener>
@@ -92,7 +110,8 @@
     <context-param>
         <description>JDBC-URL</description>
         <param-name>jdbc-url</param-name>
-        <param-value>jdbc:mysql://localhost:3306/georgian_dream?useUnicode=true&amp;characterEncoding=UTF-8</param-value>
+        <param-value>jdbc:mysql://localhost:3306/georgian_dream?useUnicode=true&amp;characterEncoding=UTF-8
+        </param-value>
     </context-param>
 
     <context-param>

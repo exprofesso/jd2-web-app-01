@@ -10,9 +10,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-public class LoginationCommand implements Command {
+public class UserPageCommand implements Command {
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -20,16 +20,19 @@ public class LoginationCommand implements Command {
             UserService userService = factory.getUserService();
             User user = userService.findByLoginAndPassword(request.getParameter("login"), request.getParameter("password"));
             request.setAttribute("user", user);
-            if (user != null ) {
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userPage.jsp");
-                requestDispatcher.forward(request, response);
-            } else {
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/errorUserNotFind.jsp");
-                requestDispatcher.forward(request, response);
-            }
+//            request.getRequestDispatcher("/WEB-INF/jsp/user/userPage.jsp").forward(request, response);
 
         } catch (Exception e) {
             throw new ServletException(e);
         }
+        if (!request.getParameter("name").equals("")) {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userPage.jsp");
+            requestDispatcher.forward(request, response);
+        } else {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/errorUserNotFind.jsp");
+            requestDispatcher.forward(request, response);
+        }
     }
 }
+
+

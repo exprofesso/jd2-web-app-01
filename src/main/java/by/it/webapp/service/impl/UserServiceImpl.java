@@ -147,9 +147,4 @@ public class UserServiceImpl extends BaseService implements UserService {
                 throw new ServiceException(e);
             }
         }
-
-        @Override
-        public User readByLoginAndPassword (String login, String password) throws ServiceException {
-            return null;
-        }
     }

@@ -8,8 +8,8 @@
         <link href="../main.css" rel="stylesheet">
     </head>
     <body>
-        <h1>Турфирма "Грузинская мечта!"</h1>
-        <h2>Список пользователей</h2>
+    <h1>Турфирма "Грузинская мечта!"</h1>
+    <h2>Список пользователей</h2>
         <table>
             <tr>
                 <th>Логин</th>
@@ -30,7 +30,7 @@
                 <td class="content">${user.surname}</td>
                 <td class="content">${user.email}</td>
                 <td class="content">${user.discount}</td>
-                <td class="empty"> <a href="userEdit.jsp?id=${user.id}" class="add-button">Редактировать</a></td>
+                <td class="empty"><a href="MyController?command=GoToUserEdit&id=${user.id}" class="add-button">Редактировать</a></td>
 <%--                <td class="empty"><a href="userEdit.jsp?id=${user.id}" class="edit"></a></td>--%>
             </tr>
             </c:forEach>
