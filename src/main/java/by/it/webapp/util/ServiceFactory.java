@@ -1,13 +1,17 @@
 package by.it.webapp.util;
 
+import by.it.webapp.dao.TransferDao;
 import by.it.webapp.dao.UserDao;
+import by.it.webapp.dao.impl.TransferDaoImpl;
 import by.it.webapp.dao.impl.UserDaoImpl;
 import by.it.webapp.domain.User;
 import by.it.webapp.pool.ConnectionPool;
 import by.it.webapp.pool.ConnectionPoolException;
 import by.it.webapp.service.Transaction;
+import by.it.webapp.service.TransferService;
 import by.it.webapp.service.UserService;
 import by.it.webapp.service.impl.TransactionImpl;
+import by.it.webapp.service.impl.TransferServiceImpl;
 import by.it.webapp.service.impl.UserServiceImpl;
 
 import java.sql.Connection;
@@ -17,6 +21,7 @@ public final class ServiceFactory implements AutoCloseable {
 
     private static final ServiceFactory instance = new ServiceFactory();
     private final UserServiceImpl userService = new UserServiceImpl();
+    private final TransferServiceImpl transferService = new TransferServiceImpl();
     private final User user = new User();
 
     public ServiceFactory() {
@@ -31,10 +36,21 @@ public final class ServiceFactory implements AutoCloseable {
         userService.setUserDao(getUserDao());
         return userService;
     }
+
+    public TransferService getTransferService() throws FactoryException{
+        transferService.setTransaction(getTransaction());
+        transferService.settransferDao(getTransferDao());
+        return transferService;
+    }
     public UserDao getUserDao() throws FactoryException {
         UserDaoImpl userDao = new UserDaoImpl();
         userDao.setConnection(getConnection());
         return userDao;
+    }
+    public TransferDao getTransferDao() throws FactoryException{
+        TransferDaoImpl transferDao = new TransferDaoImpl();
+        transferDao.setConnection(getConnection());
+        return transferDao;
     }
 
     public Connection getConnection() throws FactoryException {

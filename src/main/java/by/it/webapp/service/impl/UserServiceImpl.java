@@ -53,7 +53,7 @@ public class UserServiceImpl extends BaseService implements UserService {
     @Override
     public User findByLogin(String login) throws ServiceException {
         try {
-            log.info("transition to findById User");
+            log.info("transition to findByLogin User");
             return userDao.readByLogin(login);
         } catch (DaoException e) {
             log.error("Didn't find one" + e.getMessage());
@@ -65,7 +65,7 @@ public class UserServiceImpl extends BaseService implements UserService {
     @Override
     public User findByLoginAndPassword(String login, String password) throws ServiceException {
         try {
-            log.info("transition to findById User");
+            log.info("transition to findByLoginAndPassword User");
             return userDao.readByLoginAndPassword(login, password);
         } catch (DaoException e) {
             log.error("Didn't find one" + e.getMessage());
