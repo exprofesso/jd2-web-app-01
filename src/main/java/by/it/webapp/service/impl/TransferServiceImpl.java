@@ -16,7 +16,7 @@ public class TransferServiceImpl extends BaseService implements TransferService 
     private static final Logger log = LogManager.getLogger(TransferServiceImpl.class);
 
 
-    public void settransferDao(TransferDao transferDao) {
+    public void setTransferDao(TransferDao transferDao) {
         this.transferDao = transferDao;
     }
 
@@ -59,8 +59,13 @@ public class TransferServiceImpl extends BaseService implements TransferService 
     public void save(Transfer transfer) throws ServiceException {
         log.info("Beginning to save the Transfer");
         try {
-            log.info("CREATE Transfer");
-            transferDao.create(transfer);
+            if (transfer.getId() != null) {
+                log.info("UPDATE Transfer");
+                transferDao.update(transfer);
+            } else {
+                log.info("CREATE Transfer");
+                transferDao.create(transfer);
+            }
         } catch (DaoException e) {
             log.error("NOT CREATE Transfer");
             throw new ServiceException(e);

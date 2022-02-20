@@ -16,6 +16,12 @@ public final class CommandProvider {
         commandMap.put("GoToUserList", new GoToUserListCommand());
         commandMap.put("GoToUserEdit", new GoToUserEditCommand());
         commandMap.put("UserSaveCommand", new UserSaveCommand());
+        commandMap.put("GoToTransferSaveCommand", new GoToTransferSaveCommand());
+        commandMap.put("TransferSaveCommand", new TransferSaveCommand());
+        commandMap.put("GoToTransferList", new GoToTransferListCommand());
+
+
+
 
 
     }

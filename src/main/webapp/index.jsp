@@ -11,6 +11,10 @@
 <a href="MyController?command=GoToRegistration">Registration</a>
 <br/>
 <a href="MyController?command=GoToUserList">UserList</a>
+<br/>
+<a href="MyController?command=GoToTransferList">TransferList</a>
+<br/>
+<a href="MyController?command=GoToTransferSaveCommand">transferSave</a>
 <%--<a href="gotoregistration">Registration</a>--%>
 </body>
 </html>

@@ -39,7 +39,7 @@ public final class ServiceFactory implements AutoCloseable {
 
     public TransferService getTransferService() throws FactoryException{
         transferService.setTransaction(getTransaction());
-        transferService.settransferDao(getTransferDao());
+        transferService.setTransferDao(getTransferDao());
         return transferService;
     }
     public UserDao getUserDao() throws FactoryException {
