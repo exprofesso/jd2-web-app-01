@@ -19,6 +19,9 @@ public final class CommandProvider {
         commandMap.put("GoToTransferSaveCommand", new GoToTransferSaveCommand());
         commandMap.put("TransferSaveCommand", new TransferSaveCommand());
         commandMap.put("GoToTransferList", new GoToTransferListCommand());
+        commandMap.put("GoToTypeOfHolidays", new GoToTypeOfHolidayListCommand());
+        commandMap.put("GoToTypeOfHolidaySaveCommand", new GoToTypeOfHolidaySaveCommand());
+        commandMap.put("TypeOfHolidaySaveCommand", new TypeOfHolidaySaveCommand());
 
 
 

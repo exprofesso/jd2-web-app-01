@@ -10,11 +10,15 @@
 <br/>
 <a href="MyController?command=GoToRegistration">Registration</a>
 <br/>
-<a href="MyController?command=GoToUserList">UserList</a>
+<a href="MyController?command=GoToUserList">User List</a>
 <br/>
-<a href="MyController?command=GoToTransferList">TransferList</a>
+<a href="MyController?command=GoToTransferList">Transfer List</a>
 <br/>
-<a href="MyController?command=GoToTransferSaveCommand">transferSave</a>
+<a href="MyController?command=GoToTransferSaveCommand">Transfer Save</a>
+<br/>
+<a href="MyController?command=GoToTypeOfHolidays">Type Of Holidays</a>
+<br/>
+<a href="MyController?command=GoToTypeOfHolidaySaveCommand">Type Of Holiday Save</a>
 <%--<a href="gotoregistration">Registration</a>--%>
 </body>
 </html>

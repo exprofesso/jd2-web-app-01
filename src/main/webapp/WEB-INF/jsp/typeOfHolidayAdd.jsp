@@ -17,7 +17,7 @@
     <input type="hidden" name="command" value="TypeOfHolidaySaveCommand">
     <table style="with: 50%">
         <tr>
-            <td>Тип транспорта</td>
+            <td>Тип отдыха</td>
             <td><input type="text" name="typeOfHoliday" /></td>
         </tr></table>
     <input type="submit" value="Submit" /></form>
