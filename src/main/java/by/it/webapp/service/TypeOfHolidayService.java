@@ -1,6 +1,5 @@
 package by.it.webapp.service;
 
-import by.it.webapp.domain.Transfer;
 import by.it.webapp.domain.TypeOfHoliday;
 import by.it.webapp.service.exception.ServiceException;
 

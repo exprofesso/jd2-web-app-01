@@ -1,22 +1,18 @@
 package by.it.webapp.util;
 
+import by.it.webapp.dao.DiscountDao;
 import by.it.webapp.dao.TransferDao;
 import by.it.webapp.dao.TypeOfHolidayDao;
 import by.it.webapp.dao.UserDao;
+import by.it.webapp.dao.impl.DiscountDaoImpl;
 import by.it.webapp.dao.impl.TransferDaoImpl;
 import by.it.webapp.dao.impl.TypeOfHolidayDaoImpl;
 import by.it.webapp.dao.impl.UserDaoImpl;
 import by.it.webapp.domain.User;
 import by.it.webapp.pool.ConnectionPool;
 import by.it.webapp.pool.ConnectionPoolException;
-import by.it.webapp.service.Transaction;
-import by.it.webapp.service.TransferService;
-import by.it.webapp.service.TypeOfHolidayService;
-import by.it.webapp.service.UserService;
-import by.it.webapp.service.impl.TransactionImpl;
-import by.it.webapp.service.impl.TransferServiceImpl;
-import by.it.webapp.service.impl.TypeOfHolidayServiceImpl;
-import by.it.webapp.service.impl.UserServiceImpl;
+import by.it.webapp.service.*;
+import by.it.webapp.service.impl.*;
 
 import java.sql.Connection;
 
@@ -27,6 +23,8 @@ public final class ServiceFactory implements AutoCloseable {
     private final UserServiceImpl userService = new UserServiceImpl();
     private final TransferServiceImpl transferService = new TransferServiceImpl();
     private final TypeOfHolidayServiceImpl typeOfHolidayService = new TypeOfHolidayServiceImpl();
+    private final DiscountServiceImpl discountService = new DiscountServiceImpl();
+
     private final User user = new User();
 
     public ServiceFactory() {
@@ -42,15 +40,22 @@ public final class ServiceFactory implements AutoCloseable {
         return userService;
     }
 
-    public TransferService getTransferService() throws FactoryException{
+    public TransferService getTransferService() throws FactoryException {
         transferService.setTransaction(getTransaction());
         transferService.setTransferDao(getTransferDao());
         return transferService;
     }
-    public TypeOfHolidayService getTypeOfHolidayService() throws FactoryException{
-        typeOfHolidayService.setTypeOfHolidayDao(getTypeOfHolidayDao());
+
+    public TypeOfHolidayService getTypeOfHolidayService() throws FactoryException {
+        typeOfHolidayService.setTransaction(getTransaction());
         typeOfHolidayService.setTypeOfHolidayDao(getTypeOfHolidayDao());
         return typeOfHolidayService;
+    }
+
+    public DiscountService getDiscountService() throws FactoryException {
+        discountService.setTransaction(getTransaction());
+        discountService.setDiscountDao(getDiscountDao());
+        return discountService;
     }
 
     public UserDao getUserDao() throws FactoryException {
@@ -58,16 +63,25 @@ public final class ServiceFactory implements AutoCloseable {
         userDao.setConnection(getConnection());
         return userDao;
     }
-    public TransferDao getTransferDao() throws FactoryException{
+
+    public TransferDao getTransferDao() throws FactoryException {
         TransferDaoImpl transferDao = new TransferDaoImpl();
         transferDao.setConnection(getConnection());
         return transferDao;
     }
-    public TypeOfHolidayDao getTypeOfHolidayDao() throws FactoryException{
+
+    public TypeOfHolidayDao getTypeOfHolidayDao() throws FactoryException {
         TypeOfHolidayDaoImpl typeOfHolidayDao = new TypeOfHolidayDaoImpl();
         typeOfHolidayDao.setConnection(getConnection());
         return typeOfHolidayDao;
     }
+
+    public DiscountDao getDiscountDao() throws FactoryException {
+        DiscountDaoImpl discountDao = new DiscountDaoImpl();
+        discountDao.setConnection(getConnection());
+        return discountDao;
+    }
+
 
     public Connection getConnection() throws FactoryException {
         if (connection == null) {
@@ -79,6 +93,7 @@ public final class ServiceFactory implements AutoCloseable {
         }
         return connection;
     }
+
     public Transaction getTransaction() throws FactoryException {
         TransactionImpl transaction = new TransactionImpl();
         transaction.setConnection(getConnection());

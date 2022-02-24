@@ -7,6 +7,8 @@ import by.it.webapp.pool.ConnectionPool;
 import by.it.webapp.pool.ConnectionPoolException;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DiscountDaoImpl extends BaseDaoImpl implements DiscountDao {
 
@@ -33,6 +35,26 @@ public class DiscountDaoImpl extends BaseDaoImpl implements DiscountDao {
 
         } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public List<Discount> readAll() throws DaoException {
+        final String findAllQuery = "SELECT * FROM Discounts ORDER BY id";
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(findAllQuery)) {
+            List<Discount> discountAll = new ArrayList<>();
+            while (resultSet.next()) {
+                Discount discount = new Discount();
+                discount.setId(resultSet.getLong(ID));
+                discount.setPercent(Integer.parseInt(resultSet.getString(PERCENT)));
+                discountAll.add(discount);
+            }
+            return discountAll;
+
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException();
         }
     }
 
