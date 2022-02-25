@@ -16,13 +16,18 @@ public final class CommandProvider {
         commandMap.put("GoToUserList", new GoToUserListCommand());
         commandMap.put("GoToUserEdit", new GoToUserEditCommand());
         commandMap.put("UserSaveCommand", new UserSaveCommand());
+
         commandMap.put("GoToTransferSaveCommand", new GoToTransferSaveCommand());
         commandMap.put("TransferSaveCommand", new TransferSaveCommand());
         commandMap.put("GoToTransferList", new GoToTransferListCommand());
-        commandMap.put("GoToTypeOfHolidays", new GoToTypeOfHolidayListCommand());
+
         commandMap.put("GoToTypeOfHolidaySaveCommand", new GoToTypeOfHolidaySaveCommand());
         commandMap.put("TypeOfHolidaySaveCommand", new TypeOfHolidaySaveCommand());
+        commandMap.put("GoToTypeOfHolidays", new GoToTypeOfHolidayListCommand());
 
+        commandMap.put("GoToDiscountSaveCommand", new GoToDiscountSaveCommand());
+        commandMap.put("DiscountSaveCommand", new DiscountSaveCommand());
+        commandMap.put("GoToDiscounts", new GoToDiscountListCommand());
 
 
 

@@ -19,6 +19,10 @@
 <a href="MyController?command=GoToTypeOfHolidays">Type Of Holidays</a>
 <br/>
 <a href="MyController?command=GoToTypeOfHolidaySaveCommand">Type Of Holiday Save</a>
+<br/>
+<a href="MyController?command=GoToDiscounts">Discounts</a>
+<br/>
+<a href="MyController?command=GoToDiscountSaveCommand">Discount Save</a>
 <%--<a href="gotoregistration">Registration</a>--%>
 </body>
 </html>
