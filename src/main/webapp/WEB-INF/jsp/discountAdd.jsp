@@ -17,8 +17,8 @@
     <input type="hidden" name="command" value="DiscountSaveCommand">
     <table style="with: 50%">
         <tr>
-            <td>Тип транспорта</td>
-            <td><input type="text" name="percent" /></td>
+            <td>Процент скидки</td>
+            <td><input type="text" name="Percent" /></td>
         </tr></table>
     <input type="submit" value="Submit" /></form>
 </body>
