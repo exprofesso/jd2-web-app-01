@@ -40,6 +40,7 @@ public class TourDaoImpl extends BaseDaoImpl implements TourDao {
                 tour.setId(resultSet.getLong(TOURID));
                 typeOfHoliday.setId(Long.valueOf(resultSet.getInt(TYPESOFHOLIDAYSID)));
                 tour.setTypeOfHoliday(typeOfHoliday);
+                tour.setTown(resultSet.getString(TOWN));
                 tour.setDate(resultSet.getDate(DATE));
                 tour.setDay(resultSet.getInt(DAYS));
                 tour.setFood(Food.values()[resultSet.getInt(FOOT)]);
@@ -72,6 +73,7 @@ public class TourDaoImpl extends BaseDaoImpl implements TourDao {
                     tour.setId(id);
                     typeOfHoliday.setId(Long.valueOf(resultSet.getInt(TYPESOFHOLIDAYSID)));
                     tour.setTypeOfHoliday(typeOfHoliday);
+                    tour.setTown(resultSet.getString(TOWN));
                     tour.setDate(resultSet.getDate(DATE));
                     tour.setDay(resultSet.getInt(DAYS));
                     tour.setFood(Food.values()[resultSet.getInt(FOOT)]);

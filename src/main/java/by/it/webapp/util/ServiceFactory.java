@@ -1,13 +1,7 @@
 package by.it.webapp.util;
 
-import by.it.webapp.dao.DiscountDao;
-import by.it.webapp.dao.TransferDao;
-import by.it.webapp.dao.TypeOfHolidayDao;
-import by.it.webapp.dao.UserDao;
-import by.it.webapp.dao.impl.DiscountDaoImpl;
-import by.it.webapp.dao.impl.TransferDaoImpl;
-import by.it.webapp.dao.impl.TypeOfHolidayDaoImpl;
-import by.it.webapp.dao.impl.UserDaoImpl;
+import by.it.webapp.dao.*;
+import by.it.webapp.dao.impl.*;
 import by.it.webapp.domain.User;
 import by.it.webapp.pool.ConnectionPool;
 import by.it.webapp.pool.ConnectionPoolException;
@@ -24,6 +18,7 @@ public final class ServiceFactory implements AutoCloseable {
     private final TransferServiceImpl transferService = new TransferServiceImpl();
     private final TypeOfHolidayServiceImpl typeOfHolidayService = new TypeOfHolidayServiceImpl();
     private final DiscountServiceImpl discountService = new DiscountServiceImpl();
+    private final TourServiceImpl tourService = new TourServiceImpl();
 
     private final User user = new User();
 
@@ -58,6 +53,12 @@ public final class ServiceFactory implements AutoCloseable {
         return discountService;
     }
 
+    public TourService getTourService() throws FactoryException {
+        tourService.setTransaction(getTransaction());
+        tourService.setTourDao(getTourDao());
+        return tourService;
+    }
+
     public UserDao getUserDao() throws FactoryException {
         UserDaoImpl userDao = new UserDaoImpl();
         userDao.setConnection(getConnection());
@@ -80,6 +81,12 @@ public final class ServiceFactory implements AutoCloseable {
         DiscountDaoImpl discountDao = new DiscountDaoImpl();
         discountDao.setConnection(getConnection());
         return discountDao;
+    }
+
+    public TourDao getTourDao() throws FactoryException {
+        TourDaoImpl tourDao = new TourDaoImpl();
+        tourDao.setConnection(getConnection());
+        return tourDao;
     }
 
 

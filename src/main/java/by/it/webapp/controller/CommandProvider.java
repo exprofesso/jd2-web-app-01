@@ -32,6 +32,10 @@ public final class CommandProvider {
 
 
 
+        commandMap.put("GoToTours", new GoToTourListCommand());
+
+
+
     }
 
     public final Command getCommand (String commandName){
