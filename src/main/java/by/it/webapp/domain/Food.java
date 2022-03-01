@@ -11,7 +11,7 @@ public enum Food {
 
     AI("Все включено");
 
-    private String name;
+    private final String name;
 
 
     Food(String name) {

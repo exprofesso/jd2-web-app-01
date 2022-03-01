@@ -20,7 +20,7 @@ public class TourDaoImpl extends BaseDaoImpl implements TourDao {
     private static final String TOWN = "town";
     private static final String DATE = "date";
     private static final String DAYS = "days";
-    private static final String FOOT = "foot";
+    private static final String FOOD = "food";
     private static final String PRICE = "price";
     private static final String TRANSFERSID = "Transfers_id";
 
@@ -38,12 +38,12 @@ public class TourDaoImpl extends BaseDaoImpl implements TourDao {
                 Transfer transfer = new Transfer();
 
                 tour.setId(resultSet.getLong(TOURID));
-                typeOfHoliday.setId(Long.valueOf(resultSet.getInt(TYPESOFHOLIDAYSID)));
+                typeOfHoliday.setId((long) resultSet.getInt(TYPESOFHOLIDAYSID));
                 tour.setTypeOfHoliday(typeOfHoliday);
                 tour.setTown(resultSet.getString(TOWN));
                 tour.setDate(resultSet.getDate(DATE));
                 tour.setDay(resultSet.getInt(DAYS));
-                tour.setFood(Food.values()[resultSet.getInt(FOOT)]);
+                tour.setFood(Food.values()[resultSet.getInt(FOOD)]);
                 tour.setPrice(resultSet.getInt(PRICE));
                 transfer.setId(resultSet.getLong(TRANSFERSID));
                 tour.setTransfer(transfer);
@@ -76,7 +76,7 @@ public class TourDaoImpl extends BaseDaoImpl implements TourDao {
                     tour.setTown(resultSet.getString(TOWN));
                     tour.setDate(resultSet.getDate(DATE));
                     tour.setDay(resultSet.getInt(DAYS));
-                    tour.setFood(Food.values()[resultSet.getInt(FOOT)]);
+                    tour.setFood(Food.values()[resultSet.getInt(FOOD)]);
                     tour.setPrice(resultSet.getInt(PRICE));
                     transfer.setId(resultSet.getLong(TRANSFERSID));
                     tour.setTransfer(transfer);

@@ -8,6 +8,7 @@ import by.it.webapp.domain.Tour;
 import by.it.webapp.domain.Transfer;
 import by.it.webapp.domain.TypeOfHoliday;
 import by.it.webapp.service.TourService;
+import by.it.webapp.service.TypeOfHolidayService;
 import by.it.webapp.service.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,6 +20,7 @@ public class TourServiceImpl extends BaseService implements TourService {
     private TourDao tourDao;
     private TypeOfHolidayDao typeOfHolidayDao;
     private TransferDao transferDao;
+    private TypeOfHolidayServiceImpl typeOfHolidayService;
 
     private static final Logger log = LogManager.getLogger(TourServiceImpl.class);
 
@@ -36,9 +38,21 @@ public class TourServiceImpl extends BaseService implements TourService {
             List<TypeOfHoliday> typeOfHolidayAll = new ArrayList<>();
             List<Transfer> transferAll = new ArrayList<>();
 
+            log.info("read to tour database");
             tourAll.addAll(tourDao.readAll());
+            log.info("read to typeOfHoliday database");
+//            typeOfHolidayService.findAll();
+            typeOfHolidayDao.readAll();
+            System.out.println("trewtwe");
+//            typeOfHolidayAll.addAll(typeOfHolidayDao.readAll());
+//            log.info("read to transfer database");
+//            transferAll.addAll(transferDao.readAll());
 
 
+            for (Tour tour : tourAll) {
+                tour.setTypeOfHoliday(typeOfHolidayAll.get(Math.toIntExact(tour.getTypeOfHoliday().getId())));
+                tour.setTransfer(transferAll.get(Math.toIntExact(tour.getTransfer().getId())));
+            }
 
             return tourAll;
         } catch (DaoException e) {
