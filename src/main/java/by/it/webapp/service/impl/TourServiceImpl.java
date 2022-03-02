@@ -33,28 +33,28 @@ public class TourServiceImpl extends BaseService implements TourService {
     @Override
     public List<Tour> findAll() throws ServiceException {
         try {
-            log.info("transition to findAll User");
-            List<Tour> tourAll = new ArrayList<>();
-            List<TypeOfHoliday> typeOfHolidayAll = new ArrayList<>();
-            List<Transfer> transferAll = new ArrayList<>();
+//            List<Tour> tourAll = new ArrayList<>();
+//            List<TypeOfHoliday> typeOfHolidayAll = new ArrayList<>();
+//            List<Transfer> transferAll = new ArrayList<>();
 
-            log.info("read to tour database");
-            tourAll.addAll(tourDao.readAll());
-            log.info("read to typeOfHoliday database");
+//            tourAll.addAll(tourDao.readAll());
+//            log.info("read to typeOfHoliday database");
 //            typeOfHolidayService.findAll();
-            typeOfHolidayDao.readAll();
-            System.out.println("trewtwe");
+//            typeOfHolidayDao.readAll();
+//            System.out.println("trewtwe");
 //            typeOfHolidayAll.addAll(typeOfHolidayDao.readAll());
 //            log.info("read to transfer database");
 //            transferAll.addAll(transferDao.readAll());
 
 
-            for (Tour tour : tourAll) {
-                tour.setTypeOfHoliday(typeOfHolidayAll.get(Math.toIntExact(tour.getTypeOfHoliday().getId())));
-                tour.setTransfer(transferAll.get(Math.toIntExact(tour.getTransfer().getId())));
-            }
+//            for (Tour tour : tourAll) {
+//                tour.setTypeOfHoliday(typeOfHolidayAll.get(Math.toIntExact(tour.getTypeOfHoliday().getId())));
+//                tour.setTransfer(transferAll.get(Math.toIntExact(tour.getTransfer().getId())));
+//            }
 
-            return tourAll;
+//            return tourAll;
+            log.info("read to tour database");
+            return tourDao.readAll();
         } catch (DaoException e) {
             log.error("transition to" + e.getMessage());
             throw new ServiceException(e);
@@ -66,10 +66,11 @@ public class TourServiceImpl extends BaseService implements TourService {
     public Tour findById(Long id) throws ServiceException {
         try {
             log.info("transition to findById User");
-            Tour tour = tourDao.read(id);
-            tour.setTypeOfHoliday(typeOfHolidayDao.read(tour.getTypeOfHoliday().getId()));
-            tour.setTransfer(transferDao.read(tour.getTransfer().getId()));
-            return tour;
+//            Tour tour = tourDao.read(id);
+//            tour.setTypeOfHoliday(typeOfHolidayDao.read(tour.getTypeOfHoliday().getId()));
+//            tour.setTransfer(transferDao.read(tour.getTransfer().getId()));
+//            return tour;
+            return tourDao.read(id);
         } catch (DaoException e) {
             log.error("Didn't find one" + e.getMessage());
             throw new ServiceException(e);

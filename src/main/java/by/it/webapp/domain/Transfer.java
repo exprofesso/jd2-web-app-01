@@ -7,6 +7,7 @@ public class Transfer extends Entity {
 
     public Transfer() {
     }
+
     public Transfer(String typeOfTransport) {
         this.typeOfTransport = typeOfTransport;
     }
@@ -35,8 +36,6 @@ public class Transfer extends Entity {
 
     @Override
     public String toString() {
-        return "Transfer{" +
-                "typeOfTransport='" + typeOfTransport + '\'' +
-                '}';
+        return "" + typeOfTransport;
     }
 }

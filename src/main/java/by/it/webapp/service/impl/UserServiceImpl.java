@@ -1,8 +1,10 @@
 package by.it.webapp.service.impl;
 
 import by.it.webapp.dao.DaoException;
+import by.it.webapp.dao.DiscountDao;
 import by.it.webapp.dao.UserDao;
 import by.it.webapp.domain.User;
+import by.it.webapp.service.DiscountService;
 import by.it.webapp.service.UserService;
 import by.it.webapp.service.exception.ServiceException;
 import by.it.webapp.service.exception.UserNotExistsException;

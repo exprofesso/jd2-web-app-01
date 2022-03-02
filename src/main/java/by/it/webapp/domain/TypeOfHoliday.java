@@ -38,4 +38,8 @@ public class TypeOfHoliday extends Entity {
     }
 
 
+    @Override
+    public String toString() {
+        return "" + typeOfHoliday;
+    }
 }

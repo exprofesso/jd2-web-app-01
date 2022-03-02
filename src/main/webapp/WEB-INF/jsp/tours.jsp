@@ -33,13 +33,13 @@
     <c:forEach var="tour" items="${tours}">
         <tr>
             <td class="content">${tour.id}</td>
-            <td class="content">${tour.typeOfHoliday.typeOfHoliday}</td>
+            <td class="content">${tour.typeOfHoliday}</td>
             <td class="content">${tour.town}</td>
             <td class="content">${tour.date}</td>
-            <td class="content">${tour.days}</td>
+            <td class="content">${tour.day}</td>
             <td class="content">${tour.food.name}</td>
             <td class="content">${tour.price}</td>
-            <td class="content">${tour.transfer.typeOfTransport}</td>
+            <td class="content">${tour.transfer}</td>
             <td class="empty"><a href="tourEdit.html?id=${tour.id}" class="edit"></a></td>
             <td class="empty"><a href="/order/add.html?id=${tour.id}" class="add-button">ЗАКАЗАТЬ</a></td>
         </tr>
