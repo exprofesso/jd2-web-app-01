@@ -8,7 +8,7 @@ import java.util.Map;
 public final class CommandProvider {
     public final Map<String, Command> commandMap = new HashMap<String, Command>();
 
-    public CommandProvider(){
+    public CommandProvider() {
         commandMap.put("Registration", new RegistrationCommand());
         commandMap.put("login", new LoginationCommand());
         commandMap.put("GoToRegistration", new GoToRegistrationCommand());
@@ -29,16 +29,14 @@ public final class CommandProvider {
         commandMap.put("DiscountSaveCommand", new DiscountSaveCommand());
         commandMap.put("GoToDiscounts", new GoToDiscountListCommand());
 
-
-
-
+        commandMap.put("GoToTourSaveCommand", new GoToTourSaveCommand());
+        commandMap.put("TourSaveCommand", new TourSaveCommand());
         commandMap.put("GoToTours", new GoToTourListCommand());
-
 
 
     }
 
-    public final Command getCommand (String commandName){
+    public final Command getCommand(String commandName) {
         Command command = commandMap.get(commandName);
         return command;
     }

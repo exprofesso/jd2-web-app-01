@@ -1,5 +1,7 @@
 package by.it.webapp.domain;
 
+import java.util.Objects;
+
 public class TypeOfHoliday extends Entity {
 
     private String typeOfHoliday;
@@ -29,7 +31,7 @@ public class TypeOfHoliday extends Entity {
 
         TypeOfHoliday that = (TypeOfHoliday) o;
 
-        return typeOfHoliday != null ? typeOfHoliday.equals(that.typeOfHoliday) : that.typeOfHoliday == null;
+        return Objects.equals(typeOfHoliday, that.typeOfHoliday);
     }
 
     @Override

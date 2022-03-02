@@ -25,6 +25,8 @@
 <a href="MyController?command=GoToDiscountSaveCommand">Discount Save</a>
 <br/>
 <a href="MyController?command=GoToTours">Tours</a>
+<br/>
+<a href="MyController?command=GoToTourSaveCommand">Tour Save</a>
 <%--<a href="gotoregistration">Registration</a>--%>
 </body>
 </html>

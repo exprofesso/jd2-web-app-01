@@ -45,7 +45,7 @@
         </tr>
     </c:forEach>
 </table>
-<a href="tourEdit.jsp" class="add-button">Добавить</a>
+<a href="MyController?command=GoToTourSaveCommand" class="add-button">Добавить</a>
 </body>
 </html>
 
