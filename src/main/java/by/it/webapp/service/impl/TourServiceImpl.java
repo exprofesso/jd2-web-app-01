@@ -5,15 +5,11 @@ import by.it.webapp.dao.TourDao;
 import by.it.webapp.dao.TransferDao;
 import by.it.webapp.dao.TypeOfHolidayDao;
 import by.it.webapp.domain.Tour;
-import by.it.webapp.domain.Transfer;
-import by.it.webapp.domain.TypeOfHoliday;
 import by.it.webapp.service.TourService;
-import by.it.webapp.service.TypeOfHolidayService;
 import by.it.webapp.service.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TourServiceImpl extends BaseService implements TourService {
@@ -80,7 +76,14 @@ public class TourServiceImpl extends BaseService implements TourService {
 
     @Override
     public void save(Tour tour) throws ServiceException {
+        try {
+            log.info("Beginning to save the user");
 
+            tourDao.create(tour);
+        } catch (DaoException e) {
+            log.error("NOT CREATE Tour" + e.getMessage());
+            throw new ServiceException(e);
+        }
     }
 
     @Override

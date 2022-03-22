@@ -39,21 +39,28 @@ public class TourSaveCommand implements Command {
 //                tour.setTypeOfHoliday(typeOfHoliday);
 //            }
 //            typeOfHoliday.setTypeOfHoliday(request.getParameter("typeOfHoliday"));
+            typeOfHoliday.setId(2L);
+            typeOfHoliday = typeOfHolidayService.findById(typeOfHoliday.getId());
+            tour.setTypeOfHoliday(typeOfHoliday);
             tour.setTown(request.getParameter("town"));
             tour.setDate(Date.valueOf(request.getParameter("date")));
             tour.setDay(Integer.parseInt(request.getParameter("day")));
-            tour.setFood(Food.values()[Integer.parseInt(request.getParameter("food"))]);
+//            tour.setFood(Food.values()[Integer.parseInt(request.getParameter("food"))]);
+            tour.setFood(Food.AI);
             tour.setPrice(Integer.parseInt(request.getParameter("price")));
-            transfer = transferService.findByType(request.getParameter("transfer"));
-            if (!transfer.getTypeOfTransport().equals("null")) {
-                tour.setTransfer(transfer);
-            }
+//            transfer = transferService.findByType(request.getParameter("transfer"));
+//            if (!transfer.getTypeOfTransport().equals("null")) {
+//                tour.setTransfer(transfer);
+//            }
+            transfer.setId(3L);
+            transfer = transferService.findById(transfer.getId());
+            tour.setTransfer(transfer);
             tourService.save(tour);
 
         } catch (Exception e) {
             throw new ServletException(e);
         }
-        response.sendRedirect(request.getContextPath() + "/tour/list.html");
+        response.sendRedirect(request.getContextPath() + "/WEB-INF/jsp/tours.jsp");
 
     }
 }

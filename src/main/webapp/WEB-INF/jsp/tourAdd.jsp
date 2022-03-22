@@ -65,7 +65,7 @@
         <option value="${type.id}" ${selected}>${type.transfer}</option>
     </c:forEach>
 
-    <button class="save">Сохранить</button>
+    <button class="save" href="MyController?command=GoToTours">Сохранить</button>
 
     <a class="back" href="MyController?command=GoToTours">Отменить</a>
 </form>
