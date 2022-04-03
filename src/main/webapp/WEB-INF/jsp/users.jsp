@@ -19,7 +19,7 @@
                 <th>Почта</th>
                 <th>Уровень скидки</th>
                 <th>Редактирование</th>
-            <%--                <th>Роль</th>--%>
+                <th>Роль</th>
                 <td>&nbsp;</td>
             </tr>
             <c:forEach var="user" items="${users}">
@@ -30,6 +30,7 @@
                 <td class="content">${user.surname}</td>
                 <td class="content">${user.email}</td>
                 <td class="content">${user.discount}</td>
+                <td class="content">${user.role.name}</td>
                 <td class="empty"><a href="MyController?command=GoToUserEdit&id=${user.id}" class="add-button">Редактировать</a></td>
 <%--                <td class="empty"><a href="userEdit.jsp?id=${user.id}" class="edit"></a></td>--%>
             </tr>

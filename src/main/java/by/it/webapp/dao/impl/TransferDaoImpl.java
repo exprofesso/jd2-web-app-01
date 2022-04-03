@@ -14,13 +14,19 @@ public class TransferDaoImpl extends BaseDaoImpl implements TransferDao {
     private static final String TRANSFERID = "id";
     private static final String TYPEOFTRANSPORT = "Type";
 
+    private static final String READ_ALL = "SELECT * FROM Transfers ORDER BY id";
+    private static final String READ_BY_TYPE = "SELECT  * FROM Transfers WHERE Type = ?";
+    private static final String READ_ID = "SELECT  * FROM Transfers WHERE id = ?";
+    private static final String CREATE = "INSERT INTO Transfers (Type) VALUES (?)";
+    private static final String UPDATE = "UPDATE Transfers SET Type = ? WHERE id = ?";
+    private static final String DELETE = "DELETE FROM Transfers WHERE id = ?";
+
 
     @Override
     public List<Transfer> readAll() throws DaoException {
-        final String findAllQuery = "SELECT * FROM Transfers ORDER BY id";
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(findAllQuery)) {
+             ResultSet resultSet = statement.executeQuery(READ_ALL)) {
             List<Transfer> transferAll = new ArrayList<>();
             while (resultSet.next()) {
                 Transfer transfer = new Transfer();
@@ -37,10 +43,9 @@ public class TransferDaoImpl extends BaseDaoImpl implements TransferDao {
 
     @Override
     public Transfer readByType(String type) throws DaoException {
-        final String read = "SELECT  * FROM Transfers WHERE Type = ?";
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(read)) {
+             PreparedStatement statement = connection.prepareStatement(READ_BY_TYPE)) {
             statement.setString(1, type);
             try (ResultSet resultSet = statement.executeQuery()) {
                 Transfer transfer = null;
@@ -59,10 +64,9 @@ public class TransferDaoImpl extends BaseDaoImpl implements TransferDao {
 
     @Override
     public Transfer read(Long id) throws DaoException {
-        final String read = "SELECT  * FROM Transfers WHERE id = ?";
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(read)) {
+             PreparedStatement statement = connection.prepareStatement(READ_ID)) {
             statement.setLong(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 Transfer transfer = null;
@@ -81,10 +85,9 @@ public class TransferDaoImpl extends BaseDaoImpl implements TransferDao {
 
     @Override
     public Long create(Transfer transfer) throws DaoException {
-        final String create = "INSERT INTO Transfers (Type) VALUES (?)";
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(create, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement statement = connection.prepareStatement(CREATE, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, transfer.getTypeOfTransport());
             statement.executeUpdate();
             Long id = null;
@@ -101,10 +104,9 @@ public class TransferDaoImpl extends BaseDaoImpl implements TransferDao {
 
     @Override
     public void update(Transfer transfer) throws DaoException {
-        final String updateQuery = "UPDATE Transfers SET Type = ? WHERE id = ?";
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(updateQuery)
+             PreparedStatement statement = connection.prepareStatement(UPDATE)
         ) {
             statement.setString(1, transfer.getTypeOfTransport());
             statement.setLong(2, transfer.getId());
@@ -117,10 +119,9 @@ public class TransferDaoImpl extends BaseDaoImpl implements TransferDao {
 
     @Override
     public void delete(Long id) throws DaoException {
-        final String delete = "DELETE FROM Transfers WHERE id = ?";
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(delete)) {
+             PreparedStatement statement = connection.prepareStatement(DELETE)) {
             statement.setLong(1, id);
             statement.executeUpdate();
 

@@ -1,6 +1,7 @@
 package by.it.webapp.domain;
 
 import java.sql.Date;
+import java.util.Objects;
 
 public class Tour extends Entity {
     private TypeOfHoliday typeOfHoliday;
@@ -74,30 +75,20 @@ public class Tour extends Entity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Tour)) return false;
-
+        if (o == null || getClass() != o.getClass()) return false;
         Tour tour = (Tour) o;
-
-        if (typeOfHoliday != null ? !typeOfHoliday.equals(tour.typeOfHoliday) : tour.typeOfHoliday != null)
-            return false;
-        if (town != null ? !town.equals(tour.town) : tour.town != null) return false;
-        if (date != null ? !date.equals(tour.date) : tour.date != null) return false;
-        if (day != null ? !day.equals(tour.day) : tour.day != null) return false;
-        if (food != tour.food) return false;
-        if (price != null ? !price.equals(tour.price) : tour.price != null) return false;
-        return transfer != null ? transfer.equals(tour.transfer) : tour.transfer == null;
+        return Objects.equals(typeOfHoliday, tour.typeOfHoliday) &&
+                Objects.equals(town, tour.town) &&
+                Objects.equals(date, tour.date) &&
+                Objects.equals(day, tour.day) &&
+                food == tour.food &&
+                Objects.equals(price, tour.price) &&
+                Objects.equals(transfer, tour.transfer);
     }
 
     @Override
     public int hashCode() {
-        int result = typeOfHoliday != null ? typeOfHoliday.hashCode() : 0;
-        result = 31 * result + (town != null ? town.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (day != null ? day.hashCode() : 0);
-        result = 31 * result + (food != null ? food.hashCode() : 0);
-        result = 31 * result + (price != null ? price.hashCode() : 0);
-        result = 31 * result + (transfer != null ? transfer.hashCode() : 0);
-        return result;
+        return Objects.hash(typeOfHoliday, town, date, day, food, price, transfer);
     }
 
     @Override

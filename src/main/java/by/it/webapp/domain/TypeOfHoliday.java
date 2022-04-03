@@ -23,14 +23,11 @@ public class TypeOfHoliday extends Entity {
         this.typeOfHoliday = typeOfHoliday;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof TypeOfHoliday)) return false;
-
+        if (o == null || getClass() != o.getClass()) return false;
         TypeOfHoliday that = (TypeOfHoliday) o;
-
         return Objects.equals(typeOfHoliday, that.typeOfHoliday);
     }
 

@@ -45,9 +45,8 @@ public class RegistrationCommand implements Command {
             Discount discount = new Discount();
             discount.setPercent(Integer.parseInt(request.getParameter("discount")));
             user.setDiscount(discount);
-            Role role = new Role();
-            role.setRoleId(Integer.parseInt(request.getParameter("role")));
-            user.setRole(role);
+
+            user.setRole(Role.values()[Integer.parseInt(request.getParameter("role"))]);
             userService.save(user);
 
         } catch (Exception e) {

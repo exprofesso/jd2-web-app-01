@@ -11,7 +11,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class UserSaveCommand implements Command {
@@ -47,8 +46,7 @@ public class UserSaveCommand implements Command {
             discount.setPercent(2);
 //            discount.setPercent(Integer.parseInt(request.getParameter("discount")));
             user.setDiscount(discount);
-            Role role = new Role(1);
-            user.setRole(role);
+            user.setRole(Role.CUSTOMER);
             userService.save(user);
 
         } catch (Exception e) {

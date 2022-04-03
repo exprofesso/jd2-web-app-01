@@ -17,9 +17,15 @@ public final class ConnectionPool {
     int connectTimeOut;
     int maxSize;
 
-    private Queue<Connection> freeConnection = new ConcurrentLinkedQueue<>();
-    private Set<Connection> usedConnection = new ConcurrentSkipListSet<>((c1, c2) -> Integer.compare(c1.hashCode(),
+    private final Queue<Connection> freeConnection = new ConcurrentLinkedQueue<>();
+    private final Set<Connection> usedConnection = new ConcurrentSkipListSet<>((c1, c2) -> Integer.compare(c1.hashCode(),
             c2.hashCode()));
+
+    private static final ConnectionPool instance = new ConnectionPool();
+
+    public static ConnectionPool getInstance() {
+        return instance;
+    }
 
     private ConnectionPool() {
     }
@@ -59,6 +65,7 @@ public final class ConnectionPool {
                         try {
                             connection.close();
                         } catch (SQLException e) {
+                            e.printStackTrace();
                         }
                         connection = null;
                     }
@@ -109,12 +116,6 @@ public final class ConnectionPool {
 
     private Connection newConnection() throws SQLException {
         return DriverManager.getConnection(jdbcUrl, user, password);
-    }
-
-    private static ConnectionPool instance = new ConnectionPool();
-
-    public static ConnectionPool getInstance() {
-        return instance;
     }
 }
 
